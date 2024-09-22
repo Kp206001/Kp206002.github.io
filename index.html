@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Application</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Load jsPDF from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div id="container">
@@ -13,22 +16,18 @@
             <h1>Welcome to the Quiz</h1>
             <label for="student-name">Enter your name:</label>
             <input type="text" id="student-name" placeholder="Your Name">
+            <label for="question-count">Select number of questions:</label>
+            <input type="number" id="question-count" min="1" max="50" value="5">
             <button onclick="startQuiz()">Next</button>
-        </div>
-
-        <!-- Number of Questions Page -->
-        <div id="question-count-page" class="page">
-            <h1>Select Number of Questions</h1>
-            <input type="number" id="question-count" min="1" max="20" value="5">
-            <button onclick="selectQuestions()">Next</button>
         </div>
 
         <!-- Quiz Page -->
         <div id="quiz-page" class="page">
             <h1>Quiz</h1>
-            <div id="timer">Time Left: <span id="time-left">00:00</span></div>
             <div id="question-container"></div>
-            <button id="next-question" onclick="nextQuestion()">Next</button>
+            <input type="number" id="answer" placeholder="Your Answer">
+            <button onclick="submitAnswer()">Submit Answer</button>
+            <button id="next-question" onclick="nextQuestion()" style="display: none;">Next Question</button>
         </div>
 
         <!-- Result Page -->
@@ -38,15 +37,6 @@
             <button onclick="generateCertificate()">Generate Certificate</button>
             <button onclick="restartQuiz()">Restart Quiz</button>
         </div>
-
-        <!-- Certificate Page -->
-        <div id="certificate-page" class="page">
-            <h1>Certificate of Completion</h1>
-            <div id="certificate-container"></div>
-            <button onclick="downloadCertificate()">Download PDF</button>
-        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
